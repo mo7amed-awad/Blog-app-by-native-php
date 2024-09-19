@@ -8,4 +8,8 @@ return[
     'users'=>'Users',
     'login'=>'Login',
     'register'=>'Register',
+    'email'=>'Email',
+    'mobile'=>'Mobile Number',
+    'name'=>'Name',
+
 ];
