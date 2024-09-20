@@ -20,11 +20,39 @@ if(!function_exists('view'))
             {
                 ${$key}=$value;
             }}
-             include $file;
+             $view=$file;
         }else
         {
-            include config('view.path').'404.php';
+            $veiw = config('view.path').'404.php';
         }
-        return null;
+        view_engine($view);
+    }
+}
+
+if(!function_exists('view_engine'))
+{
+    function view_engine(string $view)
+    {
+        $file_path=explode('\\',$view);
+        $file_name=end($file_path);
+        $save_to_storage=base_path('storage/views/'.$file_name);
+
+        $file=file_get_contents($view);
+
+        $file=str_replace('{{','<?php echo ',$file);
+        $file=str_replace('}}',';?>',$file);
+        $file=str_replace('@php','<?php',$file);
+        $file=str_replace('@endphp','?>',$file);
+
+        $file=preg_replace("/@if\((.*?)\)+/i","<?php if($1)): ?>",$file);
+        $file=preg_replace("/@endif/i","<?php endif; ?>",$file);
+        $file=preg_replace("/@foreach\((.*?) as (.*?)\)+/i","<?php foreach($1 as $2): ?>",$file);
+        $file=preg_replace("/@endforeach/i","<?php endforeach; ?>",$file);
+        
+        //$no=str_replace('resources\views\\','storage/views/',$view);
+        //var_dump($no);
+        
+        file_put_contents($save_to_storage,$file);
+        include $save_to_storage;
     }
 }

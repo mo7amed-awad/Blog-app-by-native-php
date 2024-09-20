@@ -8,25 +8,25 @@ view('layout.header',['title'=>trans('main.home')]);
     <!-- <a href="<?php
     // echo url('storage/test/test/file.png')?>">Download File</a> -->
 
-    @if(any_errors())
+    <?php if(any_errors()): ?>
         <div class="alert alert-danger">
             <ol>
-                <@foreach(any_errors() as $errors)
-                    @foreach($errors as $error)
+                <<?php foreach(any_errors() as $errors): ?>
+                    <?php foreach($errors as $error): ?>
                         <li><?php echo $error?></li>
-                    @endforeach    
-                @endforeach
+                    <?php endforeach; ?>    
+                <?php endforeach; ?>
             </ol>
         </div>
-    @endif
+    <?php endif; ?>
 
-        @php
+        <?php
         $email_errors=get_errors('email');
         $mobile_errors=get_errors('mobile');
         $name_errors=get_errors('name');
         end_errors();
-        @endphp
-    {{url('upload')}}
+        ?>
+    <?php echo url('upload');?>
     <form method="post" action="<?php echo url('upload')?>" enctype="multipart/form-data">
 
         <label><?php echo trans('main.email')?> : </label>
