@@ -2,7 +2,7 @@
 view('layout.header',['title'=>trans('main.home')]);
 ?>
     <h1>
-        <?= trans('main.home')?>
+        <?php echo  trans('main.home') ; ?>
         
     </h1>
     <!-- <a href="<?php
@@ -20,13 +20,12 @@ view('layout.header',['title'=>trans('main.home')]);
         </div>
     <?php endif; ?>
 
-        <?php
+        <?php 
         $email_errors=get_errors('email');
         $mobile_errors=get_errors('mobile');
         $name_errors=get_errors('name');
         end_errors();
-        ?>
-    <?php echo url('upload');?>
+         ?>
     <form method="post" action="<?php echo url('upload')?>" enctype="multipart/form-data">
 
         <label><?php echo trans('main.email')?> : </label>

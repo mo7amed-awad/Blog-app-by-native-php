@@ -40,11 +40,13 @@ if(!function_exists('view_engine'))
         $file=file_get_contents($view);
 
         $file=str_replace('{{','<?php echo ',$file);
-        $file=str_replace('}}',';?>',$file);
-        $file=str_replace('@php','<?php',$file);
-        $file=str_replace('@endphp','?>',$file);
+        $file=str_replace('}}','; ?>',$file);
+        $file=str_replace('@php','<?php ',$file);
+        $file=str_replace('@endphp',' ?>',$file);
 
         $file=preg_replace("/@if\((.*?)\)+/i","<?php if($1)): ?>",$file);
+        $file=preg_replace("/@elseif\((.*?)\)+/i","<?php elseif($1)): ?>",$file);
+        $file=preg_replace("/@else/i","<?php else: ?>",$file);
         $file=preg_replace("/@endif/i","<?php endif; ?>",$file);
         $file=preg_replace("/@foreach\((.*?) as (.*?)\)+/i","<?php foreach($1 as $2): ?>",$file);
         $file=preg_replace("/@endforeach/i","<?php endforeach; ?>",$file);

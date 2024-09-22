@@ -2,7 +2,7 @@
 view('layout.header',['title'=>trans('main.home')]);
 ?>
     <h1>
-        <?= trans('main.home')?>
+        {{ trans('main.home') }}
         
     </h1>
     <!-- <a href="<?php
@@ -26,7 +26,6 @@ view('layout.header',['title'=>trans('main.home')]);
         $name_errors=get_errors('name');
         end_errors();
         @endphp
-    {{url('upload')}}
     <form method="post" action="<?php echo url('upload')?>" enctype="multipart/form-data">
 
         <label><?php echo trans('main.email')?> : </label>
