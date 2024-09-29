@@ -2,8 +2,9 @@
 
 
 if (!function_exists('validation')) {
-    function validation(array $attributes, array $trans = null, $http_header = 'redirect')
+    function validation(array $attributes, array $trans = null, $http_header = 'redirect', $back = null)
     {
+
         $validations = [];
         $values = [];
         foreach ($attributes as $attribute => $rules) {
@@ -20,24 +21,28 @@ if (!function_exists('validation')) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.integer"));
                 } elseif ($rule == 'string' && (empty($value) || !is_string($value))) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.string"));
-                }elseif ($rule == 'numbric' && !is_numeric($value)) {
+                } elseif ($rule == 'numbric' && !is_numeric($value)) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.numbric"));
                 }
             }
             if (!empty($attribute_validate) && is_array($attribute_validate) && count($attribute_validate) > 0) {
                 $validations[$attribute] = $attribute_validate;
             }
+
         }
-        if (count($validations) > 0)
-         {
+        if (count($validations) > 0) {
             if ($http_header == 'redirect') {
-                session('errors', json_encode($validations));
                 session('old', json_encode($values));
-                redirect('/');
+                session('errors', json_encode($validations));
+                if (!is_null($back)) {
+                    redirect($back);
+                } else {
+                    back();
+                }
             } elseif ($http_header == 'api') {
                 return json_encode($validations, JSON_PRETTY_PRINT);
             }
-        }else{
+        } else {
             return $values;
         }
     }
@@ -92,23 +97,19 @@ if (!function_exists('get_errors')) {
 }
 
 
-if(!function_exists('end_errors'))
-{
+if (!function_exists('end_errors')) {
     function end_errors()
     {
         session_flash('errors');
     }
 }
-if(!function_exists('old'))
-{
+if (!function_exists('old')) {
     function old($request)
     {
-        $old_values=json_decode(session('old'),true);
-        if(is_array($old_values) && !empty($old_values) && in_array($request,array_keys($old_values)))
-        {
+        $old_values = json_decode(session('old'), true);
+        if (is_array($old_values) && !empty($old_values) && in_array($request, array_keys($old_values))) {
             return $old_values[$request];
-        }else
-        {
+        } else {
             return '';
         }
     }

@@ -37,14 +37,13 @@ if (!function_exists('route_init')) {
             }
         }
 
-        if (isset($_POST) && isset($_POST['_method']) && count($_POST) > 0 && strtolower($_POST['_method'])==='post') {
+        if (isset($_POST) && isset($_POST['_method']) && count($_POST) > 0 && strtolower($_POST['_method']) === 'post') {
             foreach ($POST_ROUTES as $rpost) {
                 if (segment() == $rpost['segment']) {
                     view($rpost['view']);
-                    
                 }
             }
-            if ( (segment()) != '/' && !in_array(segment(), array_column($POST_ROUTES, 'segment'))) {
+            if ((segment()) != '/' && !in_array(segment(), array_column($POST_ROUTES, 'segment'))) {
                 echo 'This Route POST Not Found';
                 exit();
             }
@@ -53,21 +52,31 @@ if (!function_exists('route_init')) {
 }
 
 
-if(!function_exists('redirect'))
-{
+
+if (!function_exists('redirect')) {
     function redirect($path)
     {
-        header('Location: '.url($path));
+        header('Location: ' . url($path));
         exit();
     }
 }
+
+if (!function_exists('back')) {
+    function back()
+    {
+        header('Location: '.$_SERVER["HTTP_REFERER"]);
+        exit();
+    }
+}
+
+
 
 if (!function_exists('url')) {
     function url($segment)
     {
         $url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
         $url .= $_SERVER['HTTP_HOST'];
-        return $url . "/public/".ltrim($segment, '/');
+        return $url . "/public/" . ltrim($segment, '/');
     }
 }
 if (!function_exists('segment')) {

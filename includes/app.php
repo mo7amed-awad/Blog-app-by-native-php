@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-$helpers=['request','routing','helper','AES','db','session','translation','validation','storage','view'];
+$helpers=['bcrypt','request','routing','helper','AES','db','session','auth','translation','validation','storage','view'];
 
 
 foreach($helpers as $helper)

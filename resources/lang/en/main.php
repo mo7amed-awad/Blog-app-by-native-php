@@ -9,6 +9,7 @@ return[
     'login'=>'Login',
     'register'=>'Register',
     'email'=>'Email',
+    'password'=>'Password',
     'mobile'=>'Mobile Number',
     'name'=>'Name',
 
