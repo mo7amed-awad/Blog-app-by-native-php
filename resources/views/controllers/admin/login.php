@@ -9,7 +9,7 @@ $data=validation([
 ]);
 $login = db_first('users', "WHERE email LIKE '%".$data['email']."%'");
 
-if(empty($login) || (!hash_check($data['password'],$login['password']) || $login['user_type']=='admin'))
+if(empty($login) || (!hash_check($data['password'],$login['password']) || $login['user_type']!='admin'))
 {
     session('error_login',trans('admin.login_failed'));
     redirect(ADMIN.'/login');

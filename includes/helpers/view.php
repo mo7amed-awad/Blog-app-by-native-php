@@ -15,25 +15,25 @@ if(!function_exists('view'))
         $file=config('view.path').str_replace(['.','/'],DIRECTORY_SEPARATOR,$path).".php";
         if(file_exists($file))
         {
-            if(!is_null($vars)&& is_array($vars)){
-            foreach($vars as $key=>$value)
-            {
-                ${$key}=$value;
-            }}
              $view=$file;
         }else
         {
             $veiw = config('view.path').'404.php';
         }
-        view_engine($view);
+        view_engine($view,$vars);
     }
 }
 
 if(!function_exists('view_engine'))
 {
-    function view_engine(string $view)
+    function view_engine(string $view,$vars=null)
     {
-        $file_path=explode('\\',$view);
+        if(!is_null($vars)&& is_array($vars)){
+            foreach($vars as $key=>$value)
+            {
+                ${$key}=$value;
+            }}
+            $file_path=explode('\\',$view);
         $file_name=end($file_path);
         $save_to_storage=base_path('storage/views/'.$file_name);
 

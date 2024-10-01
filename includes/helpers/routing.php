@@ -31,9 +31,12 @@ if (!function_exists('route_init')) {
 
         $GET_ROUTES = isset($routes['GET']) ? $routes['GET'] : [];
         $POST_ROUTES = isset($routes['POST']) ? $routes['POST'] : [];
-        foreach ($GET_ROUTES as $rget) {
-            if (segment() == $rget['segment']) {
-                view($rget['view']);
+
+        if (!isset($_POST['_method'])) {
+            foreach ($GET_ROUTES as $rget) {
+                if (segment() == $rget['segment']) {
+                    view($rget['view']);
+                }
             }
         }
 
@@ -56,7 +59,12 @@ if (!function_exists('route_init')) {
 if (!function_exists('redirect')) {
     function redirect($path)
     {
-        header('Location: ' . url($path));
+        $check_path=parse_url($path);
+        if(isset($check_path['scheme']) && isset($check_path['host'])){
+            header('Location: ' . $path);  
+        }else{
+            header('Location: ' . url($path));  
+        }
         exit();
     }
 }
@@ -64,7 +72,7 @@ if (!function_exists('redirect')) {
 if (!function_exists('back')) {
     function back()
     {
-        header('Location: '.$_SERVER["HTTP_REFERER"]);
+        header('Location: ' . $_SERVER["HTTP_REFERER"]);
         exit();
     }
 }
@@ -79,6 +87,18 @@ if (!function_exists('url')) {
         return $url . "/public/" . ltrim($segment, '/');
     }
 }
+
+
+if (!function_exists('aurl')) {
+    function aurl($segment)
+    {
+        $url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+        $url .= $_SERVER['HTTP_HOST'];
+        return $url . "/public/" . ADMIN . '/' . ltrim($segment, '/');
+    }
+}
+
+
 if (!function_exists('segment')) {
     function segment()
     {

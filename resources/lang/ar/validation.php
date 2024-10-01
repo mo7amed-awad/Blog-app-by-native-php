@@ -6,5 +6,6 @@ return[
  'integer'=>':attribute: يجب أن يكون قيمة رقمية صحيحية',
  'string'=>':attribute: يجب أن يكون قيمة نصية',
  'numbric'=>':attribute: يجب أن يكون قيمة رقمية',
+ 'image'=>':attribute: يجب أن يكون صورة',
 
 ];

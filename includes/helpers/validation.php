@@ -15,7 +15,7 @@ if (!function_exists('validation')) {
             foreach (explode('|', $rules) as $rule) {
                 if ($rule == 'email' && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.email"));
-                } elseif ($rule == 'required' && (is_null($value) || empty($value))) {
+                } elseif ($rule == 'required' && (is_null($value) || empty($value) || (isset($value['tmp_name']) && empty($value['tmp_name'])))) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.required"));
                 } elseif ($rule == 'integer' && !filter_var((int)$value, FILTER_VALIDATE_INT)) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.integer"));
@@ -23,13 +23,15 @@ if (!function_exists('validation')) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.string"));
                 } elseif ($rule == 'numbric' && !is_numeric($value)) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.numbric"));
+                } elseif ($rule == 'image' && (!empty($value['tmp_name']) && getimagesize($value['tmp_name']) === false)) {
+                    $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.image"));
                 }
             }
             if (!empty($attribute_validate) && is_array($attribute_validate) && count($attribute_validate) > 0) {
                 $validations[$attribute] = $attribute_validate;
             }
-
         }
+        var_dump($validations);
         if (count($validations) > 0) {
             if ($http_header == 'redirect') {
                 session('old', json_encode($values));
@@ -52,14 +54,13 @@ if (!function_exists('any_errors')) {
     function any_errors($offset = null)
     {
         $array = json_decode(session('errors'), true);
-
         if (isset($array[$offset])) {
             $text = $array[$offset];
             //unset($array[$offset]);
 
             return is_array($text) ? $text : [];
         } elseif (!empty($array) && count($array) > 0) {
-            return $array;
+            return null;
         } {
             return [];
         }
@@ -71,28 +72,34 @@ if (!function_exists('any_errors')) {
 if (!function_exists('all_errors')) {
     function all_errors()
     {
-        $all_errors = [];
-        foreach (any_errors() as $errors) {
-            foreach ($errors as $error) {
-                $all_errors[] = $error;
+        $all_errors = json_decode(session('errors'), true);
+        if (is_array($all_errors)) {
+            foreach ($all_errors as $errors) {
+                foreach ($errors as $error) {
+                    $all_error[] = $error;
+                }
             }
+
+            return $all_error;
         }
-        return $all_errors;
     }
 }
 
 if (!function_exists('get_errors')) {
     function get_errors($offset)
     {
-        $errors = '<ul>';
-        foreach (any_errors($offset) as $error) {
-            if (is_string($error)) {
-                $errors .= '<li>' . $error . '</li>';
-            }
-        }
-        $errors .= '</ul>';
 
-        return !empty(any_errors($offset)) ? $errors : null;
+        if (is_array(any_errors($offset))) {
+            $errors = '<ul>';
+            foreach (any_errors($offset) as $error) {
+                if (is_string($error)) {
+                    $errors .= '<li>' . $error . '</li>';
+                }
+            }
+            $errors .= '</ul>';
+
+            return any_errors($offset);
+        }
     }
 }
 

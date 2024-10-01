@@ -17,6 +17,14 @@ if (!function_exists('storage')) {
 }
 
 
+if (!function_exists('storage_url')) 
+{
+    function storage_url(string $path):string
+    {
+        return url('storage/'.$path);
+    }
+}
+
 if (!function_exists('delete_file')) 
 {
     function delete_file($path)
@@ -28,6 +36,7 @@ if (!function_exists('delete_file'))
         return false;
     }
 }
+
 
 if (!function_exists('remove_folder')) 
 {
@@ -42,7 +51,7 @@ if (!function_exists('remove_folder'))
 }
 
 if (!function_exists('store_file')) {
-    function store_file($from, $to): bool
+    function store_file($from, $to): bool|string
     {
         if (isset($from['tmp_name'])) {
             $to_path = ltrim($to, '/');
@@ -54,8 +63,32 @@ if (!function_exists('store_file')) {
                 mkdir($check_path, 0777, true);
             }
             move_uploaded_file($from['tmp_name'], $path);
-            return true;
+            return $to;
         }
         return false;
+    }
+}
+
+
+
+if (!function_exists('file_ext')) {
+    function file_ext(array $file_name):array
+    {
+        if(!empty($file_name)){
+            $fext=explode('.',$file_name['name']);
+            $file_ext=end($fext);
+            $hash_name=md5(10).rand(000,999).'.'.$file_ext;
+            return[
+                'name'=>$file_name['name'],
+                'hash_name'=>$hash_name,
+                'ext'=>$file_ext,
+            ];
+        }else{
+            return[
+                'name'=>'',
+                'hash_name'=>'',
+                'ext'=>'',
+            ];
+        }
     }
 }

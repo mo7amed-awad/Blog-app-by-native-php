@@ -1,0 +1,11 @@
+<?php
+$data=validation([
+    'name'=>'required|string',
+    'icone'=>'required',
+    'description'=>''
+],[
+    'name'=>trans('categories.name'),
+    'icone'=>trans('categories.icone'),
+    'description'=>trans('categories.description'),
+]);
+var_dump($data);

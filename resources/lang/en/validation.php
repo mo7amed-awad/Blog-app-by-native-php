@@ -6,4 +6,5 @@ return[
  'integer'=>':attribute: Must by Numberic Value',
  'string'=>':attribute: Must by Alphabetic Value',
  'numbric'=>':attribute: Must by Float Value',
+ 'image'=>':attribute: Must by Image',
 ];

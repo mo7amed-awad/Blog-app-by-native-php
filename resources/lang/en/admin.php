@@ -7,5 +7,11 @@ return [
     'remember_me'=>'Remember me',
     'login_failed'=>'Acount Information Not Exisits in our record',
     'logout'=>'Logout',
+    'categories'=>'Categories',
+    'dashboard'=>'Dashboard',
+    'action'=>'Actions',
+    'create'=>'Create',
+    'edit'=>'Edit',
+    'delete'=>'Delete',
 
 ];
