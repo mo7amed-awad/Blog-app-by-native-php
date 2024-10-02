@@ -33,6 +33,7 @@ $categories=db_paginate('categories','',10);
                         <td>
                             <a href="<?php echo aurl('categories/show?id='.$category['id']); ?>"><i class="fa-regular fa-eye"></i></a>
                             <a href="<?php echo aurl('categories/edit?id='.$category['id']); ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <?php echo  delete_record(aurl('categories/delete?id='.$category['id'])) ; ?>
                         </td>
                     </tr>
                     <?php endwhile; ?>

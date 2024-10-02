@@ -14,5 +14,8 @@ return [
     'edit'=>'Edit',
     'delete'=>'Delete',
     'show'=>'Show',
+    'delete_message'=>'Do You Sure From Delete This Category',
+    'yes'=>'Yes',
+    'cancel'=>'Cancel',
 
 ];
