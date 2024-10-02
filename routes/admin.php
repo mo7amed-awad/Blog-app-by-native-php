@@ -15,3 +15,5 @@ route_get(ADMIN.'/categories','admin.categories.index');
 route_get(ADMIN.'/categories/create','admin.categories.create');          
 route_post(ADMIN.'/categories/create','controllers.admin.categories.create');          
 route_get(ADMIN.'/categories/show','admin.categories.show');          
+route_get(ADMIN.'/categories/edit','admin.categories.edit');          
+route_post(ADMIN.'/categories/edit','controllers.admin.categories.edit');          

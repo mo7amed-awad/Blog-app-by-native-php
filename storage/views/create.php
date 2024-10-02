@@ -56,4 +56,6 @@ $categories = db_paginate('categories', '', 10);
         <input type="submit" class="btn btn-success" value="<?php echo trans('admin.create'); ?>" >
     </form>
 </main>
-<?php view('admin.layouts.footer'); ?>
+<?php view('admin.layouts.footer'); 
+session_flash('old');
+?>

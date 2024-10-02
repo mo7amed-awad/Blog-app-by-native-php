@@ -1,9 +1,10 @@
 <?php
-view('admin.layouts.header', ['title' => trans('admin.categories')]);
 $category = db_find('categories', request('id'));
-if(empty($category)){
-    redirect(aurl('categories'));
-}
+view('admin.layouts.header', ['title' => trans('admin.categories').'--'.$category['name']]);
+// if(empty($category)){
+//     redirect(aurl('categories'));
+// }
+redirect_if(empty($category),aurl('categories'));
 ?>
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">

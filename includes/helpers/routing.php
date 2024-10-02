@@ -69,6 +69,17 @@ if (!function_exists('redirect')) {
     }
 }
 
+if (!function_exists('redirect_if')) {
+    function redirect_if(bool $statement, string $url)
+    {
+        if($statement){
+            redirect($url);
+        }
+    }
+}
+
+
+
 if (!function_exists('back')) {
     function back()
     {

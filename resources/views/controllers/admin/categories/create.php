@@ -13,5 +13,5 @@ $data=validation([
 $file_info=file_ext($data['icone']);
 $data['icone']=store_file($data['icone'],'categories/'.$file_info['hash_name']);
 db_create('categories',$data);
-session_flash('old');
+
 redirect(aurl('categories'));
