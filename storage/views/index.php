@@ -27,7 +27,7 @@ $categories=db_paginate('categories','',10);
                         <td><?php echo $category['id']; ?></td>
                         <td><?php echo $category['name']; ?></td>
                         <td>
-                            <img src="<?php echo storage_url($category['icone']); ?>" style="width:25px;height:25px;" />
+                        <?php echo image(storage_url($category['icone'])); ?>
                         </td>
                         <td><?php echo $category['description']; ?></td>
                         <td>

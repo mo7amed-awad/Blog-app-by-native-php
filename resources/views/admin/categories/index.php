@@ -27,7 +27,7 @@ $categories=db_paginate('categories','',10);
                         <td>{{$category['id']}}</td>
                         <td>{{$category['name']}}</td>
                         <td>
-                            <img src="{{storage_url($category['icone'])}}" style="width:25px;height:25px;" />
+                        {{image(storage_url($category['icone']))}}
                         </td>
                         <td>{{$category['description']}}</td>
                         <td>
