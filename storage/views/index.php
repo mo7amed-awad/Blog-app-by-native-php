@@ -31,7 +31,7 @@ $categories=db_paginate('categories','',10);
                         </td>
                         <td><?php echo $category['description']; ?></td>
                         <td>
-                            edit + delete
+                            <a href="<?php echo aurl('categories/show?id='.$category['id']); ?>"><?php echo trans('admin.show'); ?></a>
                         </td>
                     </tr>
                     <?php endwhile; ?>

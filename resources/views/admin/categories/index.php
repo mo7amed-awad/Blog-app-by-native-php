@@ -31,7 +31,7 @@ $categories=db_paginate('categories','',10);
                         </td>
                         <td>{{$category['description']}}</td>
                         <td>
-                            edit + delete
+                            <a href="{{aurl('categories/show?id='.$category['id'])}}">{{trans('admin.show')}}</a>
                         </td>
                     </tr>
                     <?php endwhile; ?>

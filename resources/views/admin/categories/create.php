@@ -46,7 +46,7 @@ $categories = db_paginate('categories', '', 10);
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="description">{{trans('categories.description')}}</label>
-                    <textarea type="file" name="description"
+                    <textarea name="description" 
                         class="form-control {{ !empty($description_errors) ? 'is-invalid' : '' }}">
                         {{old('description')}}
                     </textarea>
