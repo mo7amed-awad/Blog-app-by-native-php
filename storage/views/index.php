@@ -1,6 +1,6 @@
 <?php 
 view('admin.layouts.header',['title'=>trans('admin.categories')]);
-$categories=db_paginate('categories','',10);
+$categories=db_paginate('categories','',3);
 
 ?>
 
@@ -40,5 +40,6 @@ $categories=db_paginate('categories','',10);
                 </tbody>
             </table>
         </div>
+        <?php echo $categories['render']; ?>
 </main>
 <?php view('admin.layouts.footer'); ?>
