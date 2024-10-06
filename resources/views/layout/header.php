@@ -19,6 +19,7 @@ if(session_has('locale'))
     <?php else:?>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php endif;?>
+    
 </head>
 <body>
     <?php view('layout.navbar')?>

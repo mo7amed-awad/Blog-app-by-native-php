@@ -16,24 +16,26 @@
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="<?php echo aurl('categories'); ?>">
-                <?php echo trans('admin.categories'); ?>
-              </a>
-            </li>
-          
-          </ul>
-
-          <hr class="my-3">
-
-          <ul class="nav flex-column mb-auto">
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
-                <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
-                Settings
+              <i class="fa-regular fa-rectangle-list"></i>
+              <?php echo trans('admin.categories'); ?>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="<?php echo aurl('news'); ?>">
+                <i class="fa-regular fa-newspaper"></i>
+                <?php echo trans('admin.news'); ?>
               </a>
             </li>
             
+          </ul>
+          
+          <hr class="my-3">
+          
+          <ul class="nav flex-column mb-auto">
+            
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="<?php echo url('admin/logout'); ?>">
+                <i class="fa-solid fa-right-from-bracket"></i>
                 <?php echo trans('admin.logout'); ?>
               </a>
             </li>

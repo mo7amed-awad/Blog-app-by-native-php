@@ -16,24 +16,26 @@
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{aurl('categories')}}">
-                {{trans('admin.categories')}}
-              </a>
-            </li>
-          
-          </ul>
-
-          <hr class="my-3">
-
-          <ul class="nav flex-column mb-auto">
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
-                <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
-                Settings
+              <i class="fa-regular fa-rectangle-list"></i>
+              {{trans('admin.categories')}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{aurl('news')}}">
+                <i class="fa-regular fa-newspaper"></i>
+                {{trans('admin.news')}}
               </a>
             </li>
             
+          </ul>
+          
+          <hr class="my-3">
+          
+          <ul class="nav flex-column mb-auto">
+            
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('admin/logout')}}">
+                <i class="fa-solid fa-right-from-bracket"></i>
                 {{trans('admin.logout')}}
               </a>
             </li>

@@ -17,5 +17,9 @@ return [
     'delete_message'=>'Do You Sure From Delete This Category',
     'yes'=>'Yes',
     'cancel'=>'Cancel',
+    'news'=>'News',
+    'created_at'=>'Created_at',
+    'updated_at'=>'Updated_at',
+    'choose'=>'Choose',
 
 ];
