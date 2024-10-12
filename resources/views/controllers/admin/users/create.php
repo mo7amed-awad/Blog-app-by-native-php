@@ -1,9 +1,9 @@
 <?php
 $data=validation([
     'name'=>'required|string',
-    'email'=>'required|email',
-    'password'=>'',
-    'mobile'=>'required',
+    'email'=>'required|email|unique:users',
+    'password'=>'required|string',
+    'mobile'=>'required|unique:users',
     'user_type'=>'required|string',
 ],[
     'name'=>trans('users.name'),
@@ -14,11 +14,8 @@ $data=validation([
 
 ]);
 
-if (!empty($data['password'])) {
-    $data['password']=bcrypt($data['password']);
+$data['password']=bcrypt($data['password']);
 
-} else {
-    unset($data['password']);
-}
-db_update('users', $data, request('id'));
+db_create('users',$data);
+
 redirect(aurl('users'));

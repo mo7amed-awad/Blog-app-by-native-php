@@ -26,6 +26,27 @@ if (!function_exists('validation')) {
                 } elseif ($rule == 'image' && (!empty($value['tmp_name']) && getimagesize($value['tmp_name']) === false)) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.image"));
                 }
+                elseif (preg_match('/^unique:/i',$rule)){
+                    $ex_rule = explode(':',$rule);
+                    if(count($ex_rule)>1 && isset($ex_rule[1])){
+                        $get_unique_info= explode(',',$ex_rule[1]);
+
+                        $table = $get_unique_info[0];
+                        $column=isset($get_unique_info[1])?$column=$get_unique_info[1]:$attribute;
+
+                        if(isset($get_unique_info[2])){
+                            $sql="where ".$column."='".$value."' and id!='".$get_unique_info[2];
+                        }else{
+                            $sql="where ".$column."='".$value."'";
+                        }
+
+                        $check_unique_db= db_first($table,$sql);
+
+                        if(!empty($check_unique_db)){
+                            $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.unique"));
+                        }
+                    } 
+                }
             }
             if (!empty($attribute_validate) && is_array($attribute_validate) && count($attribute_validate) > 0) {
                 $validations[$attribute] = $attribute_validate;

@@ -21,5 +21,7 @@ return [
     'created_at'=>'Created_at',
     'updated_at'=>'Updated_at',
     'choose'=>'Choose',
+    'users'=>'users',
+
 
 ];

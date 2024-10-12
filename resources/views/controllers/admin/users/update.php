@@ -1,9 +1,9 @@
 <?php
 $data=validation([
     'name'=>'required|string',
-    'email'=>'required|email',
+    'email'=>'required|email|unique:users,email,'.request('id'),
     'password'=>'',
-    'mobile'=>'required',
+    'mobile'=>'required|unique:users,mobile,'.request('id'),
     'user_type'=>'required|string',
 ],[
     'name'=>trans('users.name'),

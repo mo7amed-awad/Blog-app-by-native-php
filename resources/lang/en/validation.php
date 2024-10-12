@@ -7,4 +7,5 @@ return[
  'string'=>':attribute: Must by Alphabetic Value',
  'numbric'=>':attribute: Must by Float Value',
  'image'=>':attribute: Must by Image',
+ 'unique'=>':attribute: Must by Unique',
 ];

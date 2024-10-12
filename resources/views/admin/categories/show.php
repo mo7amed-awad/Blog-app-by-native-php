@@ -12,7 +12,6 @@ redirect_if(empty($category),aurl('categories'));
         <h3>{{trans('admin.categories')}} / {{$category['name']}}</h3>
         <a class="btn btn-primary" href="{{aurl('categories')}}">{{trans('admin.categories')}}</a>
     </div>
-    <input type="hidden" name="_method" value="post">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
