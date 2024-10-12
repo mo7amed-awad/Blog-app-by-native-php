@@ -41,6 +41,7 @@ if(session_has('locale'))
     <link href="{{url('assets/admin')}}/css/style.css" rel="stylesheet">
     <link href="{{url('assets/admin')}}/css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
     <style>
       .ck-editor__editable[role="textbox"]{

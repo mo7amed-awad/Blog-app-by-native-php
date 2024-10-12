@@ -1,13 +1,13 @@
 <?php 
-view('admin.layouts.header',['title'=>trans('admin.users')]);
-$users=db_paginate('users','',12);
+view('admin.layouts.header',['title'=>trans('admin.categories')]);
+$categories=db_paginate('categories','',3);
 
 ?>
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2><?php echo trans('admin.users'); ?></h2>
-        <a class="btn btn-primary" href="<?php echo aurl('users/create'); ?>"> <i class="fa-solid fa-plus"> </i><?php echo trans('users.create'); ?> </a>
+        <h2><?php echo trans('admin.categories'); ?></h2>
+        <a class="btn btn-primary" href="<?php echo aurl('categories/create'); ?>"> <i class="fa-solid fa-plus"> </i><?php echo trans('categories.create'); ?> </a>
 
     </div>
     <div class="table-responsive small">
@@ -15,31 +15,31 @@ $users=db_paginate('users','',12);
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"><?php echo trans('users.name'); ?></th>
-                        <th scope="col"><?php echo trans('users.email'); ?></th>
-                        <th scope="col"><?php echo trans('users.mobile'); ?></th>
-                        <th scope="col"><?php echo trans('users.user_type'); ?></th>
+                        <th scope="col"><?php echo trans('categories.name'); ?></th>
+                        <th scope="col"><?php echo trans('categories.icone'); ?></th>
+                        <th scope="col"><?php echo trans('categories.description'); ?></th>
                         <th scope="col"><?php echo trans('admin.action'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while($user = mysqli_fetch_assoc($users['query'])):?>
+                    <?php while($category = mysqli_fetch_assoc($categories['query'])):?>
                     <tr>
-                        <td><?php echo $user['id']; ?></td>
-                        <td><?php echo $user['name']; ?></td>
-                        <td><?php echo $user['email']; ?></td>
-                        <td><?php echo $user['mobile']; ?></td>
-                        <td><?php echo trans('users.'.$user['user_type']); ?></td>
+                        <td><?php echo $category['id']; ?></td>
+                        <td><?php echo $category['name']; ?></td>
                         <td>
-                            <a href="<?php echo aurl('users/show?id='.$user['id']); ?>"><i class="fa-regular fa-eye"></i></a>
-                            <a href="<?php echo aurl('users/edit?id='.$user['id']); ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <?php echo  delete_record(aurl('users/delete?id='.$user['id'])) ; ?>
+                        <?php echo image(storage_url($category['icone'])); ?>
+                        </td>
+                        <td><?php echo $category['description']; ?></td>
+                        <td>
+                            <a href="<?php echo aurl('categories/show?id='.$category['id']); ?>"><i class="fa-regular fa-eye"></i></a>
+                            <a href="<?php echo aurl('categories/edit?id='.$category['id']); ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <?php echo  delete_record(aurl('categories/delete?id='.$category['id'])) ; ?>
                         </td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
         </div>
-        <?php echo $users['render']; ?>
+        <?php echo $categories['render']; ?>
 </main>
 <?php view('admin.layouts.footer'); ?>

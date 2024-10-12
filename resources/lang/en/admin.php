@@ -22,6 +22,8 @@ return [
     'updated_at'=>'Updated_at',
     'choose'=>'Choose',
     'users'=>'users',
+    'success'=>'Success Process',
+    'success_message'=>'Successfuly Added',
 
 
 ];

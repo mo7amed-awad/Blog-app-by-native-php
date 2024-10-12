@@ -22,4 +22,6 @@ return [
     'updated_at'=>'تاريخ التعديل',
     'choose'=>'اختر',
     'users'=>'المستخدمين',
+    'success'=>'عملية ناجحة',
+    'success_message'=>'تم الإضافة بنجاح',
 ];
