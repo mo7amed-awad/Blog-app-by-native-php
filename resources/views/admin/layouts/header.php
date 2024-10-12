@@ -30,12 +30,9 @@ if(session_has('locale'))
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="{{url('assets/admin')}}/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      
-    </style>
-
+    <link href="{{url('assets/admin')}}/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" />
+    
     
     <!-- Custom styles for this template -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -44,6 +41,16 @@ if(session_has('locale'))
     <link href="{{url('assets/admin')}}/css/style.css" rel="stylesheet">
     <link href="{{url('assets/admin')}}/css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <style>
+      .ck-editor__editable[role="textbox"]{
+        min-height: 200px;
+      }
+      .ck-content .image{
+        max-width: 80;
+        margin: 20px auto;
+      }
+    </style>
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">

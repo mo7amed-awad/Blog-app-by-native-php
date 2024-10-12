@@ -69,7 +69,7 @@ $categories=db_get('categories','');
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="content">{{trans('news.content')}}</label>
-                    <textarea name="content" 
+                    <textarea name="content" id="content"
                         class="form-control {{ !empty($content_errors) ? 'is-invalid' : '' }}">
                         {{old('content')}}
                     </textarea>
@@ -79,6 +79,15 @@ $categories=db_get('categories','');
         <input type="submit" class="btn btn-success" value="{{trans('admin.create')}}" >
     </form>
 </main>
+<script>
+    ClassicEditor
+    .create(document.querySelector('#content'),{
+        language: '{{ session_has("locale")?session("locale"):"en"}}'
+    })
+    .catch(error => {
+        console.error(error);
+    });
+</script>
 <?php view('admin.layouts.footer'); 
 session_flash('old');
 ?>

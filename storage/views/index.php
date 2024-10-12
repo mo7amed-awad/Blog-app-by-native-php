@@ -1,6 +1,19 @@
 <?php 
 view('admin.layouts.header',['title'=>trans('admin.news')]);
-$news_list=db_paginate('news','',10);
+$news_list=db_paginate('news',
+"JOIN categories on news.category_id=categories.id
+JOIN users on news.user_id = users.id",10,"asc","
+news.title,
+news.content,
+news.category_id,
+news.user_id,
+news.image,
+news.description,
+news.id,
+news.created_at,
+news.updated_at,
+users.name as username,
+categories.name as category_name");
 
 ?>
 
@@ -19,8 +32,6 @@ $news_list=db_paginate('news','',10);
                         <th scope="col"><?php echo trans('news.user_id'); ?></th>
                         <th scope="col"><?php echo trans('news.category_id'); ?></th>
                         <th scope="col"><?php echo trans('news.image'); ?></th>
-                        <th scope="col"><?php echo trans('news.description'); ?></th>
-                        <th scope="col"><?php echo trans('news.content'); ?></th>
                         <th scope="col"><?php echo trans('admin.created_at'); ?></th>
                         <th scope="col"><?php echo trans('admin.updated_at'); ?></th>
                         <th scope="col"><?php echo trans('admin.action'); ?></th>
@@ -31,13 +42,11 @@ $news_list=db_paginate('news','',10);
                     <tr>
                         <td><?php echo $news['id']; ?></td>
                         <td><?php echo $news['title']; ?></td>
-                        <td><?php echo $news['user_id']; ?></td>
-                        <td><?php echo $news['category_id']; ?></td>
+                        <td><a href="<?php echo aurl('users/show?id='.$news['user_id']); ?>"><?php echo $news['username']; ?></a></td>
+                        <td><a href="<?php echo aurl('categories/show?id='.$news['category_id']); ?>"><?php echo $news['category_name']; ?></a></td>
                         <td>
                         <?php echo image(storage_url($news['image'])); ?>
                         </td>
-                        <td><?php echo $news['description']; ?></td>
-                        <td><?php echo $news['content']; ?></td>
                         <td><?php echo $news['created_at']; ?></td>
                         <td><?php echo $news['updated_at']; ?></td>
                         <td>

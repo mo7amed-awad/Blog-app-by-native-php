@@ -1,10 +1,10 @@
 <?php
-$category = db_find('categories', request('id'));
-redirect_if(empty($category), aurl('categories'));
-if (!empty($category['icone'])) {
-    delete_file($category['icone']);
+$news = db_find('news', request('id'));
+redirect_if(empty($news), aurl('news'));
+if (!empty($news['image'])) {
+    delete_file($news['image']);
 }
 
-db_delete('categories', request('id'));
+db_delete('news', request('id'));
 
-redirect(aurl('categories'));
+redirect(aurl('news'));
