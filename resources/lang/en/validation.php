@@ -8,4 +8,5 @@ return[
  'numbric'=>':attribute: Must by Float Value',
  'image'=>':attribute: Must by Image',
  'unique'=>':attribute: Must by Unique',
+ 'in'=>':attribute: Value Does Not Exist',
 ];

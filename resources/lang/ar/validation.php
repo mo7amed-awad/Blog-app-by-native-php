@@ -8,5 +8,6 @@ return[
  'numbric'=>':attribute: يجب أن يكون قيمة رقمية',
  'image'=>':attribute: يجب أن يكون صورة',
  'unique'=>':attribute:مستخدم من قبل',
+ 'in'=>':attribute: قيمة غير موجودة ',
 
 ];

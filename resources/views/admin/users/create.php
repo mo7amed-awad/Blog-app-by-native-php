@@ -63,8 +63,8 @@ view('admin.layouts.header', ['title' => trans('admin.users')]);
                     <label for="user_type">{{trans('users.user_type')}}</label>
                     <select class="form-select {{ !empty($user_type_errors) ? 'is-invalid' : '' }}" name="user_type">
                         <option disabled selected>{{trans('admin.choose')}}</option>
-                        <option value="user" {{old('user_type') == 'user'?'select':''}}>{{trans('users.user')}}</option>
-                        <option value="admin" {{old('user_type') == 'admin'?'select':''}}>{{trans('users.admin')}}</option>
+                        <option value="user" {{old('user_type') == 'user'?'selected':''}}>{{trans('users.user')}}</option>
+                        <option value="admin" {{old('user_type') == 'admin'?'selected':''}}>{{trans('users.admin')}}</option>
                     </select>
                 </div>
             </div>

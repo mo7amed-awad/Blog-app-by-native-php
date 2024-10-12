@@ -4,7 +4,7 @@ $data=validation([
     'email'=>'required|email|unique:users',
     'password'=>'required|string',
     'mobile'=>'required|unique:users',
-    'user_type'=>'required|string',
+    'user_type'=>'required|string|in:user,admin',
 ],[
     'name'=>trans('users.name'),
     'email'=>trans('users.email'),

@@ -1,10 +1,10 @@
 <?php
 $data=validation([
     'name'=>'required|string',
-    'email'=>'required|email',
+    'email'=>'required|email|unique:users,email,'.request('id'),
     'password'=>'',
-    'mobile'=>'required',
-    'user_type'=>'required|string',
+    'mobile'=>'required|unique:users,mobile,'.request('id'),
+    'user_type'=>'required|string|in:user,admin',
 ],[
     'name'=>trans('users.name'),
     'email'=>trans('users.email'),

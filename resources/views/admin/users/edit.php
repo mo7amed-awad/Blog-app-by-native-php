@@ -71,8 +71,8 @@ redirect_if(empty($user), aurl('users'));
                 <div class="form-group">
                     <label for="user_type">{{trans('users.user_type')}}</label>
                     <select class="form-select {{ !empty($user_type_errors) ? 'is-invalid' : '' }}" name="user_type">
-                        <option value="user" {{$user['user_type'] == 'user'?'select':''}}>{{trans('users.user')}}</option>
-                        <option value="admin" {{$user['user_type'] == 'admin'?'select':''}}>{{trans('users.admin')}}</option>
+                        <option value="user" {{$user['user_type'] == 'user'?'selected':''}}>{{trans('users.user')}}</option>
+                        <option value="admin" {{$user['user_type'] == 'admin'?'selected':''}}>{{trans('users.admin')}}</option>
                     </select>
                 </div>
             </div>

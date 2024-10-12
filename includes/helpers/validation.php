@@ -25,6 +25,14 @@ if (!function_exists('validation')) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.numbric"));
                 } elseif ($rule == 'image' && (!empty($value['tmp_name']) && getimagesize($value['tmp_name']) === false)) {
                     $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.image"));
+                }elseif(preg_match('/^in:/i',$rule)){
+                    $ex_rule = explode(':',$rule);
+                    if(isset($ex_rule[1])){
+                        $ex_in=explode(',',$ex_rule[1]);
+                        if(!empty($ex_in) && is_array($ex_in) && !in_array($value,$ex_in)){
+                            $attribute_validate[] = str_replace(':attribute', $final_attr, trans("validation.in"));
+                        }
+                    }
                 }
                 elseif (preg_match('/^unique:/i',$rule)){
                     $ex_rule = explode(':',$rule);
@@ -35,7 +43,7 @@ if (!function_exists('validation')) {
                         $column=isset($get_unique_info[1])?$column=$get_unique_info[1]:$attribute;
 
                         if(isset($get_unique_info[2])){
-                            $sql="where ".$column."='".$value."' and id!='".$get_unique_info[2];
+                            $sql="where ".$column."='".$value."' and id!='".$get_unique_info[2]."'";
                         }else{
                             $sql="where ".$column."='".$value."'";
                         }
