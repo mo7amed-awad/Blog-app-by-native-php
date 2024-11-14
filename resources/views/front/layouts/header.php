@@ -18,7 +18,7 @@ if (session_has('locale')) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title><?php echo isset($title) && !empty($title) ? $title : 'Project Name'; ?></title>
+    <title>{{trans('main.sitename')}} {{ !empty($title)?'- '.$title:''}}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
